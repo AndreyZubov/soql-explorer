@@ -1,0 +1,14 @@
+# Test slice configuration. The JDBC URL is overridden at runtime by
+# Testcontainers via @DynamicPropertySource; the static settings below
+# only constrain JPA/Flyway behavior.
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.jdbc.time_zone: UTC
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration

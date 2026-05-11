@@ -1,0 +1,39 @@
+# JVM / Gradle
+.gradle/
+build/
+out/
+*.class
+hs_err_pid*
+
+# IDE
+.idea/
+*.iml
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / frontend
+node_modules/
+dist/
+.npm/
+.eslintcache
+coverage/
+
+# Secrets and local config
+.env
+.env.local
+*.local
+
+# Logs
+logs/
+*.log
+
+# Local planning docs
+IMPLEMENTATION_PLAN.md
+.claude/

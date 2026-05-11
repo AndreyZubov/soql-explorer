@@ -1,0 +1,12 @@
+# Test profile — used by MockMvc tests in the web module.
+# The persistence-module integration tests override these via @DynamicPropertySource.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/soql_explorer_test
+    username: test
+    password: test
+
+soqlexplorer:
+  security:
+    jwt:
+      secret: dev-test-key-with-more-than-thirty-two-chars-of-entropy

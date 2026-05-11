@@ -1,0 +1,14 @@
+# Local development profile.
+# Pairs with docker-compose.yml (postgres listening on 5432).
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/soql_explorer
+    username: soql_explorer
+    password: soql_explorer
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    io.soqlexplorer: DEBUG
+    org.springframework.web: INFO

@@ -1,0 +1,25 @@
+# Local development environment.
+# Boot only PostgreSQL by default; the backend and frontend are run from
+# their respective build tools (./gradlew bootRun and npm run dev). Use
+# `docker compose --profile full up` to also start the application
+# containers (definitions arrive in Step 5 alongside the Dockerfiles).
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: soql-explorer-postgres
+    environment:
+      POSTGRES_DB: soql_explorer
+      POSTGRES_USER: soql_explorer
+      POSTGRES_PASSWORD: soql_explorer
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U soql_explorer -d soql_explorer"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

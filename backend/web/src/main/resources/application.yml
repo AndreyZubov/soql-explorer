@@ -1,0 +1,46 @@
+# Default configuration. Per-environment overrides live in application-{profile}.yml.
+spring:
+  application:
+    name: soql-explorer
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${SERVER_PORT:8080}
+  forward-headers-strategy: framework
+  error:
+    include-message: never
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+soqlexplorer:
+  security:
+    jwt:
+      issuer: soql-explorer
+      # MUST be overridden in every non-local profile via env var or Vault.
+      secret: ${JWT_SIGNING_KEY:change-me-in-production-this-is-a-dev-only-secret-min-32-chars}
+      access-token-ttl-seconds: 900
+      refresh-token-ttl-seconds: 604800
