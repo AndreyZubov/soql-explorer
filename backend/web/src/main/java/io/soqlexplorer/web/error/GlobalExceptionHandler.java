@@ -1,6 +1,7 @@
 package io.soqlexplorer.web.error;
 
 import io.soqlexplorer.application.auth.InvalidCredentialsException;
+import io.soqlexplorer.application.connection.ConnectionNotFoundException;
 import io.soqlexplorer.application.ports.salesforce.SalesforceGatewayException;
 import io.soqlexplorer.web.security.InvalidJwtException;
 import java.net.URI;
@@ -52,6 +53,11 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(IllegalArgumentException.class)
   public ProblemDetail handleBadInput(IllegalArgumentException ex) {
     return problem(HttpStatus.BAD_REQUEST, "bad-request", ex.getMessage());
+  }
+
+  @ExceptionHandler(ConnectionNotFoundException.class)
+  public ProblemDetail handleConnectionNotFound(ConnectionNotFoundException ex) {
+    return problem(HttpStatus.NOT_FOUND, "connection-not-found", ex.getMessage());
   }
 
   @ExceptionHandler(SalesforceGatewayException.class)

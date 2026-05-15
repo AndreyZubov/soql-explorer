@@ -35,5 +35,7 @@ logs/
 *.log
 
 # Local planning docs
-IMPLEMENTATION_PLAN.md
+notes/
 .claude/
+# Claude Code agent instructions (local, not for publication)
+CLAUDE.md

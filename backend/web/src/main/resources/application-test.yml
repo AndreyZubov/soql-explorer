@@ -10,3 +10,9 @@ soqlexplorer:
   security:
     jwt:
       secret: dev-test-key-with-more-than-thirty-two-chars-of-entropy
+  salesforce:
+    client-id: test-client
+    client-secret: test-secret
+    redirect-uri: http://localhost:8080/connections/oauth/callback
+    spa-callback-redirect: http://localhost:5173/connections
+    refresh-token-encryption-key: dev-test-32-byte-key-please-change-now!!
