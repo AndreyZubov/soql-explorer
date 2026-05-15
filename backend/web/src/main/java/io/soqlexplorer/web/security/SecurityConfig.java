@@ -40,13 +40,14 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers(
                         "/auth/**",
+                        "/connections/oauth/callback",
                         "/v3/api-docs/**",
                         "/swagger-ui/**",
                         "/swagger-ui.html",
                         "/actuator/health",
                         "/actuator/info")
                     .permitAll()
-                    .requestMatchers("/actuator/**")
+                    .requestMatchers("/actuator/**", "/api/v1/cache/**")
                     .hasRole("ADMIN")
                     .anyRequest()
                     .authenticated())

@@ -18,8 +18,9 @@ dependencyManagement {
 dependencies {
     api(project(":backend:application"))
 
-    implementation("org.springframework.boot:spring-boot-starter-cache")
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("com.github.ben-manes.caffeine:caffeine")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.assertj:assertj-core")
 }

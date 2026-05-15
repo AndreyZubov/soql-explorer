@@ -8,12 +8,12 @@ import java.util.Map;
 /**
  * Outbound port for all Salesforce REST interactions.
  *
- * <p>The Step 1 boot does not call Salesforce; this interface is declared up front so the
- * application layer can compile against it and the Step 2 adapter can fill in the implementation
- * without touching higher layers.
- *
  * <p>Methods return plain Java types — no Spring, no Salesforce SDK leaking up. Errors are
  * surfaced via {@link SalesforceGatewayException}.
+ *
+ * <p>The adapter is responsible for keeping access tokens fresh (typically by delegating to an
+ * in-memory token cache + the OAuth refresh-token flow). Callers pass the
+ * {@link SalesforceConnection} aggregate and never see raw tokens.
  */
 public interface SalesforceGatewayPort {
 
@@ -22,6 +22,9 @@ public interface SalesforceGatewayPort {
 
   /** Describes a single sObject — fields, relationships, picklist values. */
   Map<String, Object> describeSObject(SalesforceConnection connection, String sObjectName);
+
+  /** Returns the parent/child relationships of an sObject. */
+  Map<String, Object> getRelationships(SalesforceConnection connection, String sObjectName);
 
   /** Executes a SOQL query and returns the raw page (records + nextRecordsUrl). */
   QueryPage executeQuery(SalesforceConnection connection, SoqlQuery query);
